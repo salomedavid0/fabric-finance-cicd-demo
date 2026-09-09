@@ -1,0 +1,76 @@
+name: Validate Fabric definitions
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-definitions:
+    name: Validate PBIR and Fabric JSON
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate JSON and PBIR visuals
+        shell: python
+        run: |
+          import json
+          import pathlib
+          import sys
+
+          root = pathlib.Path(".")
+          json_files = sorted(root.rglob("*.json"))
+          errors = []
+
+          for path in json_files:
+              try:
+                  with path.open(encoding="utf-8-sig") as stream:
+                      document = json.load(stream)
+              except (OSError, UnicodeError, json.JSONDecodeError) as error:
+                  errors.append(f"{path}: invalid JSON: {error}")
+                  continue
+
+              if path.name != "visual.json":
+                  continue
+
+              if document.get("name") != path.parent.name:
+                  errors.append(
+                      f"{path}: visual name must match its parent directory"
+                  )
+
+              visual_type = document.get("visual", {}).get("visualType")
+              if not visual_type:
+                  errors.append(f"{path}: missing visual.visualType")
+
+              position = document.get("position", {})
+              for property_name in ("x", "y", "z", "height", "width"):
+                  value = position.get(property_name)
+                  if not isinstance(value, (int, float)):
+                      errors.append(
+                          f"{path}: position.{property_name} must be numeric"
+                      )
+
+              for property_name in ("height", "width"):
+                  value = position.get(property_name)
+                  if isinstance(value, (int, float)) and value <= 0:
+                      errors.append(
+                          f"{path}: position.{property_name} must be positive"
+                      )
+
+          print(f"Validated {len(json_files)} JSON files.")
+
+          if errors:
+              print("\n".join(f"ERROR: {error}" for error in errors))
+              sys.exit(1)
