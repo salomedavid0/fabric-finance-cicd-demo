@@ -1,0 +1,97 @@
+table budgets
+	lineageTag: 1a7be0bf-c193-4cda-916c-e84ef19c9593
+	sourceLineageTag: [dbo].[budgets]
+
+	column budget_id
+		dataType: string
+		lineageTag: bb40f92d-aa81-42c4-a761-564636ccee2c
+		sourceLineageTag: budget_id
+		summarizeBy: none
+		sourceColumn: budget_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dc1e131-143c-415f-9ab7-c240e068fe33
+		sourceLineageTag: fiscal_year
+		summarizeBy: sum
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 10ea603c-0030-4f86-8746-730bb600c20a
+		sourceLineageTag: period_month
+		summarizeBy: sum
+		sourceColumn: period_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2747bed5-6307-44a5-a144-16320bcc4fba
+		sourceLineageTag: period_date
+		summarizeBy: none
+		sourceColumn: period_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_center_id
+		dataType: string
+		lineageTag: e5ced694-1c83-473c-b986-7cc46670dc29
+		sourceLineageTag: cost_center_id
+		summarizeBy: none
+		sourceColumn: cost_center_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: b96878f6-418b-4cf5-b095-c113efc934f9
+		sourceLineageTag: account_id
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_amount_eur
+		dataType: double
+		lineageTag: 098ea9ae-c2ac-4e67-bdd0-8a6b8fa863da
+		sourceLineageTag: budget_amount_eur
+		summarizeBy: sum
+		sourceColumn: budget_amount_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column budget_type
+		dataType: string
+		lineageTag: f6a7265a-f7b2-4605-9e2d-7d162264d7f2
+		sourceLineageTag: budget_type
+		summarizeBy: none
+		sourceColumn: budget_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column version
+		dataType: string
+		lineageTag: a5afaf4b-200d-4d7f-a22f-e73aca5eee66
+		sourceLineageTag: version
+		summarizeBy: none
+		sourceColumn: version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition budgets = entity
+		mode: directLake
+		source
+			entityName: budgets
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

@@ -1,0 +1,89 @@
+table allocations
+	lineageTag: 51d28547-c375-466f-b7de-96c7effbbdfc
+	sourceLineageTag: [dbo].[allocations]
+
+	column allocation_id
+		dataType: string
+		lineageTag: 68299f73-8597-42d9-b1b1-bc263c4acf1c
+		sourceLineageTag: allocation_id
+		summarizeBy: none
+		sourceColumn: allocation_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 65616b87-2259-49b5-916d-292f0a66911c
+		sourceLineageTag: fiscal_year
+		summarizeBy: sum
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_cost_center
+		dataType: string
+		lineageTag: a78bc05b-bc0d-44a2-813a-164cfb30c6e1
+		sourceLineageTag: from_cost_center
+		summarizeBy: none
+		sourceColumn: from_cost_center
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_cost_center_id
+		dataType: string
+		lineageTag: ef55b012-1dd4-405c-8269-dfa2dfe6ec44
+		sourceLineageTag: to_cost_center_id
+		summarizeBy: none
+		sourceColumn: to_cost_center_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column allocation_driver
+		dataType: string
+		lineageTag: 90a359c6-3e47-4782-b71e-977a28ff657a
+		sourceLineageTag: allocation_driver
+		summarizeBy: none
+		sourceColumn: allocation_driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column driver_units
+		dataType: double
+		lineageTag: f355033a-928c-44c1-8f2e-d8679afc3390
+		sourceLineageTag: driver_units
+		summarizeBy: sum
+		sourceColumn: driver_units
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column allocated_amount_eur
+		dataType: double
+		lineageTag: ac5cb5d9-9f1e-41c4-92cf-4194175663ed
+		sourceLineageTag: allocated_amount_eur
+		summarizeBy: sum
+		sourceColumn: allocated_amount_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column allocation_month
+		dataType: int64
+		formatString: 0
+		lineageTag: dfa73f40-3a75-4391-9219-0a7369af3b30
+		sourceLineageTag: allocation_month
+		summarizeBy: sum
+		sourceColumn: allocation_month
+
+		annotation SummarizationSetBy = Automatic
+
+	partition allocations = entity
+		mode: directLake
+		source
+			entityName: allocations
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

@@ -1,0 +1,430 @@
+table _Measures
+	lineageTag: eb62670f-becd-4b64-bc81-79d573b34824
+
+	measure 'Total Revenue' = ```
+			
+			SUMX(
+			    invoice_lines,
+			    invoice_lines[quantity] * invoice_lines[unit_price_eur] * (1 - invoice_lines[discount_pct])
+			)
+			
+			```
+		displayFolder: Measures Revenue
+		lineageTag: f7377236-903e-4188-9361-e3ff80b4497b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue from GL' =
+			
+			CALCULATE(
+			    SUM(general_ledger[credit_amount_eur]),
+			    chart_of_accounts[account_type] = "Revenue"
+			)
+		displayFolder: Measures Revenue
+		lineageTag: 205acf34-aa78-4e6d-b724-4aa6852197e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total COGS' = ```
+			SUM(invoice_lines[cogs_eur])
+			
+			
+			```
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: 66a9b20d-af70-4065-96aa-101c03b2eaf1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'COGS from GL' =
+			
+			CALCULATE(
+			    SUM(general_ledger[debit_amount_eur]),
+			    chart_of_accounts[account_name] = "Achats matières"
+			)
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: f7754cb3-5168-4f00-a50a-d0e136961e75
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Margin EUR' = ```
+			[Total Revenue] - [Total COGS]
+			
+			```
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: fbd41b28-b81b-4fbb-9374-47bc0c7ad30f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Margin %' =
+			
+			DIVIDE(
+			    [Gross Margin EUR],
+			    [Total Revenue],
+			    0
+			) * 100
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: b3fc2d2d-a1fe-4496-9ad7-25478aef424e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Opex' = ```
+			
+			CALCULATE(
+			    SUM(general_ledger[debit_amount_eur]),
+			    chart_of_accounts[account_type] = "Expense",
+			    chart_of_accounts[account_name] <> "Achats matières"
+			)
+			
+			```
+		displayFolder: Measures Operating Expenses
+		lineageTag: 7fbc5a73-7328-446f-923b-c0b613d31c92
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure EBITDA = ```
+			[Gross Margin EUR] - [Total Opex]
+			
+			```
+		displayFolder: Measures Profitability
+		lineageTag: 35cc6be7-bf26-46a9-8d5f-cba31fdaf7f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EBITDA %' =
+			
+			DIVIDE(
+			    [EBITDA],
+			    [Total Revenue],
+			    0
+			) * 100
+		displayFolder: Measures Profitability
+		lineageTag: 7bcd2d6e-e1db-4d52-88d5-e926bd2df0f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Profit' = ```
+			[EBITDA]  // Simplifié (sans intérêts, taxes, etc.)
+			
+			```
+		displayFolder: Measures Profitability
+		lineageTag: dfab3fbb-aee2-4f78-92d4-50b6e1af9eb8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Profit %' =
+			
+			DIVIDE(
+			    [Net Profit],
+			    [Total Revenue],
+			    0
+			) * 100
+		displayFolder: Measures Profitability
+		lineageTag: ef8f3816-86f5-43ec-9290-9908e462998b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Budget' = ```
+			SUM(budgets[budget_amount_eur])
+			
+			```
+		displayFolder: Measures Budget
+		lineageTag: 6370e5e0-3d0c-42c1-9f4e-f3cf406062d9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual Expenses' =
+			
+			CALCULATE(
+			    SUM(general_ledger[debit_amount_eur]),
+			    chart_of_accounts[account_type] = "Expense"
+			)
+		displayFolder: Measures Budget
+		lineageTag: 5c09ee1d-cf2d-4e87-a338-3768b31ab87c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Variance EUR' = ```
+			[Actual Expenses] - [Total Budget]
+			
+			```
+		displayFolder: Measures Budget
+		lineageTag: 696c9bd8-3113-4095-b0c3-70912c9ae3b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Variance %' =
+			
+			DIVIDE(
+			    [Budget Variance EUR],
+			    [Total Budget],
+			    0
+			) * 100
+		displayFolder: Measures Budget
+		lineageTag: 9c19ed8c-0c31-46f6-a5c2-a01eeedd4d43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Forecast' = ```
+			SUM(forecasts[forecast_amount_eur])
+			
+			```
+		displayFolder: Measures Forecast
+		lineageTag: a1c6d8cf-9793-4040-9a95-98298b641d63
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Forecast Accuracy %' =
+			
+			DIVIDE(
+			    [Actual Expenses],
+			    [Total Forecast],
+			    0
+			) * 100
+		displayFolder: Measures Forecast
+		lineageTag: 4ebd7180-0040-4762-8606-4530df215376
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Accounts Receivable' =
+			
+			CALCULATE(
+			    SUM(invoices[total_amount_eur]),
+			    invoices[status] <> "Paid"
+			)
+		displayFolder: Measures Cash & DSO
+		lineageTag: 14c0471f-2d7b-4ae6-93e9-54d2b1cac851
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DSO =
+			
+			DIVIDE(
+			    [Accounts Receivable],
+			    [Total Revenue] / 365,
+			    0
+			)
+		displayFolder: Measures Cash & DSO
+		lineageTag: 635ab6fb-6c0a-40f4-a650-22072300791c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Overdue Amount' =
+			
+			CALCULATE(
+			    SUM(invoices[total_amount_eur]),
+			    invoices[due_date] < TODAY(),
+			    invoices[status] <> "Paid"
+			)
+		displayFolder: Measures Cash & DSO
+		lineageTag: 8bbf830b-468e-4837-9791-6e55842ea783
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Days Overdue' = ```
+			AVERAGE(payments[days_overdue])
+			
+			```
+		displayFolder: Measures Cash & DSO
+		lineageTag: 8b0c8006-f8a9-44ea-a065-e336b26ea924
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Invoices' = ```
+			COUNTROWS(invoices)
+			
+			```
+		formatString: 0
+		displayFolder: Measures Counts
+		lineageTag: 89993912-3337-4fea-8847-55f0546fdadc
+
+	measure 'Total Customers' = ```
+			COUNTROWS(customers)
+			
+			```
+		formatString: 0
+		displayFolder: Measures Counts
+		lineageTag: 18809eda-4790-4d14-8d1c-d5024814ece1
+
+	measure 'Total Products' = ```
+			COUNTROWS(products)
+			
+			```
+		formatString: 0
+		displayFolder: Measures Counts
+		lineageTag: e42494ee-a14f-440a-b365-82bdfd7703e6
+
+	measure 'Total Revenue N-1' = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR(dim_date[Year]))
+		displayFolder: Measures Revenue
+		lineageTag: 28ed627a-a88c-43fe-b6d5-8ea6bfc6c1b4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variation affichage N Total Revenue a date' = ```
+			
+			VAR diffCA = [Total Revenue] - [Total Revenue N-1]
+			VAR VARV = 
+			    IF(
+			        diffCA >= 0, 
+			        FORMAT(diffCA/1000, "#, ##0 K€"),  // Si diffCA est positif, on affiche sans le signe "+"
+			        FORMAT(diffCA/1000, "-#, ##0 K€")   // Si diffCA est négatif, on affiche avec le signe "-"
+			    )
+			
+			VAR VARPO = 
+			    IF(
+			        [Total Revenue] = 0 || ISBLANK([Total Revenue]), 
+			        "N/A",  // Si [CA] est 0 ou vide, on affiche "N/A"
+			        IF(
+			            DIVIDE(diffCA, [Total Revenue]) >= 0,
+			            FORMAT(DIVIDE(diffCA, [Total Revenue]), "+#0.0%;"),  // Si positif, format "+" devant
+			            FORMAT(DIVIDE(diffCA, [Total Revenue]), "-#0.0%;")   // Si négatif, format "-" devant
+			        )
+			    )
+			
+			RETURN
+			VARV & " (" & VARPO & " vs N-1) à date"
+			
+			```
+		displayFolder: Measures Revenue
+		lineageTag: e8814a9e-3b14-4aef-bea9-7bcd96cf5020
+
+	measure 'Revenue N' = CALCULATE([Total Revenue], dim_date[Year]= YEAR(today()))
+		displayFolder: Measures Revenue
+		lineageTag: 356eca66-1c93-420a-8eb5-b28e250f3953
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue N-1' = CALCULATE([Total Revenue], dim_date[Year] = year(TODAY())-1)
+		displayFolder: Measures Revenue
+		lineageTag: f21e0ed6-9f44-4779-b694-544ab1b25f98
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue N-2' = CALCULATE([Total Revenue], dim_date[Year]= YEAR(today())-2)
+		displayFolder: Measures Revenue
+		lineageTag: dab09097-df29-4c85-9b23-e911385a36ad
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'delta revenue' = ```
+			
+			VAR diffCA = [Revenue N] - [Revenue N-1]
+			VAR VARV = 
+			    IF(
+			        diffCA >= 0, 
+			        FORMAT(diffCA/1000, "#, ##0 K€"),  // Si diffCA est positif, on affiche sans le signe "+"
+			        FORMAT(diffCA/1000, "-#, ##0 K€")   // Si diffCA est négatif, on affiche avec le signe "-"
+			    )
+			
+			VAR VARPO = 
+			    IF(
+			        [Revenue N] = 0 || ISBLANK([Revenue N-1]), 
+			        "N/A",  // Si [CA] est 0 ou vide, on affiche "N/A"
+			        IF(
+			            DIVIDE(diffCA, [Revenue N]) >= 0,
+			            FORMAT(DIVIDE(diffCA, [Revenue N]), "+#0.0%;"),  // Si positif, format "+" devant
+			            FORMAT(DIVIDE(diffCA, [Revenue N]), "-#0.0%;")   // Si négatif, format "-" devant
+			        )
+			    )
+			
+			RETURN
+			VARV & " (" & VARPO & " vs N-1) à date"
+			
+			```
+		displayFolder: Measures Revenue
+		lineageTag: cb308b18-2f24-46cc-8827-5e74eba5fb26
+
+	measure 'margin  N' = CALCULATE([Gross Margin EUR], dim_date[Year]= YEAR(today()))
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: 56204e85-115e-440f-85a6-033070f0ead7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'margin  N-1' = CALCULATE([Gross Margin EUR], dim_date[Year]= YEAR(today())-1)
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: 2d27355b-a844-4745-85db-90d15405f421
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'delta margin' = ```
+			
+			VAR diffCA = [margin  N] - [margin  N-1]
+			VAR VARV = 
+			    IF(
+			        diffCA >= 0, 
+			        FORMAT(diffCA/1000, "#, ##0 K€"),  // Si diffCA est positif, on affiche sans le signe "+"
+			        FORMAT(diffCA/1000, "-#, ##0 K€")   // Si diffCA est négatif, on affiche avec le signe "-"
+			    )
+			
+			VAR VARPO = 
+			    IF(
+			        [margin  N] = 0 || ISBLANK([margin  N-1]), 
+			        "N/A",  // Si [CA] est 0 ou vide, on affiche "N/A"
+			        IF(
+			            DIVIDE(diffCA, [margin  N]) >= 0,
+			            FORMAT(DIVIDE(diffCA, [margin  N]), "+#0.0%;"),  // Si positif, format "+" devant
+			            FORMAT(DIVIDE(diffCA, [margin  N]), "-#0.0%;")   // Si négatif, format "-" devant
+			        )
+			    )
+			
+			RETURN
+			VARV & " (" & VARPO & " vs N-1) à date"
+			
+			```
+		displayFolder: Measures COGS & Gross Margin
+		lineageTag: ab50d34e-bfc2-4e0c-8ac2-5100b36b4c3f
+
+	measure 'profit N' = CALCULATE([Net Profit], dim_date[Year]= YEAR(today()))
+		displayFolder: Measures Profitability
+		lineageTag: ca2d119d-5d16-44bc-a019-2ce66e237842
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'profit N-1' = CALCULATE([Net Profit], dim_date[Year]= YEAR(today())-1)
+		displayFolder: Measures Profitability
+		lineageTag: 27e9fcbb-3520-41e0-8d12-bf044e426e51
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variation affichage N Total profit a date' = ```
+			
+			VAR diffCA = [profit N] - [profit N-1]
+			VAR VARV = 
+			    IF(
+			        diffCA >= 0, 
+			        FORMAT(diffCA/1000, "#, ##0 K€"),  // Si diffCA est positif, on affiche sans le signe "+"
+			        FORMAT(diffCA/1000, "-#, ##0 K€")   // Si diffCA est négatif, on affiche avec le signe "-"
+			    )
+			
+			VAR VARPO = 
+			    IF(
+			        [profit N] = 0 || ISBLANK([profit N]), 
+			        "N/A",  // Si [CA] est 0 ou vide, on affiche "N/A"
+			        IF(
+			            DIVIDE(diffCA, [profit N]) >= 0,
+			            FORMAT(DIVIDE(diffCA, [profit N]), "+#0.0%;"),  // Si positif, format "+" devant
+			            FORMAT(DIVIDE(diffCA, [profit N]), "-#0.0%;")   // Si négatif, format "-" devant
+			        )
+			    )
+			
+			RETURN
+			VARV & " (" & VARPO & " vs N-1) à date"
+			
+			```
+		displayFolder: Measures Profitability
+		lineageTag: 4cb655d2-bbc4-4297-8bc0-e4264670623b
+
+	column Column
+		formatString: 0
+		lineageTag: 22d8e2bf-f790-4821-865f-ab72dc75689f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 33abf0935a8f4e868bfd8146de07f634
+

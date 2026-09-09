@@ -1,0 +1,345 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "2d344975b0290dba0d8c",
+  "position": {
+    "x": 645,
+    "y": 222,
+    "z": 4000,
+    "height": 224,
+    "width": 595
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customers"
+                    }
+                  },
+                  "Property": "company_name"
+                }
+              },
+              "queryRef": "customers.company_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Overdue Amount"
+                }
+              },
+              "queryRef": "_Measures.Overdue Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Days Overdue"
+                }
+              },
+              "queryRef": "_Measures.Avg Days Overdue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Overdue Amount"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A6ADC6'"
+                    }
+                  }
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "85L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E0E0E0'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "878ab9ce05802eac7a39",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "customers",
+              "Type": 0
+            },
+            {
+              "Name": "v",
+              "Entity": "_Measures",
+              "Type": 0
+            },
+            {
+              "Name": "sv",
+              "Entity": "_Measures",
+              "Type": 0
+            },
+            {
+              "Name": "subquery1",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sc",
+                        "Entity": "customers",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "si",
+                        "Entity": "invoices",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sv1",
+                        "Entity": "_Measures",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sp",
+                        "Entity": "payments",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          },
+                          "Property": "company_name"
+                        },
+                        "Name": "sc_company_name"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "si"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "si"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sp"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sv1"
+                              }
+                            },
+                            "Property": "Overdue Amount"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "company_name"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery1"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "restatement": "Top 10 company name by overdue amount"
+      }
+    ]
+  },
+  "howCreated": "Copilot"
+}

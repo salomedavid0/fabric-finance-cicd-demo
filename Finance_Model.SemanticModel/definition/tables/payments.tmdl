@@ -1,0 +1,69 @@
+table payments
+	lineageTag: 7a6af8b0-c7bd-4c43-828b-4b6f3af04ec5
+	sourceLineageTag: [dbo].[payments]
+
+	column payment_id
+		dataType: string
+		lineageTag: 06a7c92f-8d3a-4547-b61a-011d3f9634a1
+		sourceLineageTag: payment_id
+		summarizeBy: none
+		sourceColumn: payment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_id
+		dataType: string
+		lineageTag: fe6f2e38-4caa-4453-b9da-5b4d9210486c
+		sourceLineageTag: invoice_id
+		summarizeBy: none
+		sourceColumn: invoice_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f728781c-c131-4bec-972b-1813c5f63502
+		sourceLineageTag: payment_date
+		summarizeBy: none
+		sourceColumn: payment_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_amount_eur
+		dataType: double
+		lineageTag: 448d9d8d-358d-4acb-8f91-40fae24dc3ff
+		sourceLineageTag: payment_amount_eur
+		summarizeBy: none
+		sourceColumn: payment_amount_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column payment_method
+		dataType: string
+		lineageTag: 253c1370-993b-4afe-9383-ace8a4e754a6
+		sourceLineageTag: payment_method
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column days_overdue
+		dataType: int64
+		formatString: 0
+		lineageTag: 261ecf2a-0a8d-4715-8d3c-3f84f909974f
+		sourceLineageTag: days_overdue
+		summarizeBy: none
+		sourceColumn: days_overdue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition payments = entity
+		mode: directLake
+		source
+			entityName: payments
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

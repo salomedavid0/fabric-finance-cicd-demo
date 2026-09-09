@@ -1,0 +1,201 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "fab14aafddcf5581da5f",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 720.41112883218148,
+    "width": 1136.8704589757222,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "esriVisual",
+    "query": {
+      "queryState": {
+        "Latitude": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "caisses_regionales_39000"
+                    }
+                  },
+                  "Property": "Latitude"
+                }
+              },
+              "queryRef": "caisses_regionales_39000.Latitude",
+              "nativeQueryRef": "Sum of Latitude"
+            }
+          ]
+        },
+        "Longitude": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "caisses_regionales_39000"
+                    }
+                  },
+                  "Property": "Longitude"
+                }
+              },
+              "queryRef": "caisses_regionales_39000.Longitude",
+              "nativeQueryRef": "Sum of Longitude"
+            }
+          ]
+        },
+        "Color": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "caisses_regionales_39000"
+                        }
+                      },
+                      "Property": "Valeur"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(caisses_regionales_39000.Valeur)",
+              "nativeQueryRef": "Sum of Valeur"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "caisses_regionales_39000"
+                      }
+                    },
+                    "Property": "Valeur"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "featureInfo": [
+        {
+          "properties": {
+            "selectedLayerKeys": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapObject": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"portalUrl\":\"https://www.arcgis.com\",\"version\":\"2.4\",\"isAuthorNamedUser\":false,\"map\":{\"webmap\":{\"is3d\":false,\"itemData\":{\"operationalLayers\":[{\"id\":\"MyLayer\",\"visibility\":true,\"opacity\":1,\"minScale\":0,\"maxScale\":0,\"refreshInterval\":0,\"title\":\"Coordinates\",\"objectIdField\":\"objectId\",\"type\":\"DataLayer\",\"layerType\":\"ArcGISFeatureLayer\",\"popupEnabled\":true,\"disablePopup\":false,\"visible\":true,\"geometryType\":\"point\",\"source\":[{\"attributes\":{},\"geometry\":{\"x\":0,\"y\":0,\"type\":\"point\",\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100}}}],\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"esriMaps\":{\"isTimeEnabled\":\"false\",\"clusterInfo\":null,\"lastShareInfo\":null},\"timeInfo\":null,\"showLabels\":false,\"featureCollection\":{\"layers\":[{\"popupInfo\":{\"popupElements\":[{\"type\":\"fields\",\"fieldInfos\":[{\"fieldName\":\"caisses_regionales_39000_Latitude\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Latitude\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"caisses_regionales_39000_Longitude\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Longitude\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"Sum_caisses_regionales_39000_Valeur_\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"Sum of Valeur\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"ROW_ID\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"ROW_ID\",\"tooltip\":\"\",\"visible\":true}]}],\"expressionInfos\":[],\"fieldInfos\":[{\"fieldName\":\"caisses_regionales_39000_Latitude\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Latitude\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"caisses_regionales_39000_Longitude\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Longitude\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"Sum_caisses_regionales_39000_Valeur_\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"Sum of Valeur\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"ROW_ID\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"ROW_ID\",\"tooltip\":\"\",\"visible\":true}],\"title\":\"\",\"actions\":[]},\"effect\":null,\"layerDefinition\":{\"objectIdField\":\"objectId\",\"fields\":[{\"alias\":\"objectId\",\"editable\":false,\"name\":\"objectId\",\"nullable\":false,\"type\":\"esriFieldTypeOID\"},{\"alias\":\"Latitude\",\"editable\":true,\"name\":\"caisses_regionales_39000_Latitude\",\"nullable\":true,\"type\":\"esriFieldTypeDouble\"},{\"alias\":\"Longitude\",\"editable\":true,\"name\":\"caisses_regionales_39000_Longitude\",\"nullable\":true,\"type\":\"esriFieldTypeDouble\"},{\"alias\":\"Sum of Valeur\",\"editable\":true,\"name\":\"Sum_caisses_regionales_39000_Valeur_\",\"nullable\":true,\"type\":\"esriFieldTypeInteger\"},{\"alias\":\"ROW_ID\",\"editable\":true,\"name\":\"ROW_ID\",\"nullable\":true,\"type\":\"esriFieldTypeInteger\"}],\"geometryType\":\"point\",\"drawingInfo\":{\"renderer\":{\"authoringInfo\":{\"classificationMethod\":\"esriClassifyNaturalBreaks\",\"numClasses\":5,\"standardDeviationInterval\":1,\"type\":\"classedColor\"},\"type\":\"classBreaks\",\"visualVariables\":[],\"classBreakInfos\":[{\"classMaxValue\":0,\"symbol\":{\"type\":\"esriSMS\",\"color\":[88,44,14,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":10,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":1,\"symbol\":{\"type\":\"esriSMS\",\"color\":[145,69,5,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":10,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":2,\"symbol\":{\"type\":\"esriSMS\",\"color\":[200,87,0,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":10,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":3,\"symbol\":{\"type\":\"esriSMS\",\"color\":[255,110,0,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":10,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":4,\"symbol\":{\"type\":\"esriSMS\",\"color\":[255,162,0,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":10,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}}],\"defaultLabel\":\"Other\",\"defaultSymbol\":{\"type\":\"esriSMS\",\"color\":[170,170,170,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":6,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[153,153,153,64],\"width\":0.375,\"style\":\"esriSLSSolid\"}},\"field\":\"Sum_caisses_regionales_39000_Valeur_\",\"minValue\":0},\"transparency\":0},\"featureReduction\":null,\"locationProvider\":{\"type\":\"coordinates\",\"lookupFields\":[{\"lookupField\":\"xFieldName\",\"outField\":\"caisses_regionales_39000_Longitude\"},{\"lookupField\":\"yFieldName\",\"outField\":\"caisses_regionales_39000_Latitude\"}],\"sourceSR\":4326,\"targetSR\":102100},\"minScale\":0,\"maxScale\":0,\"definitionExpression\":null,\"templates\":[{\"name\":\"New Feature\",\"description\":\"\",\"prototype\":{\"attributes\":{\"caisses_regionales_39000_Latitude\":null,\"caisses_regionales_39000_Longitude\":null,\"Sum_caisses_regionales_39000_Valeur_\":null,\"ROW_ID\":null}}}],\"elevationInfo\":null,\"name\":\"Coordinates\",\"type\":\"DataLayer\",\"queryParameters\":{\"tableId\":\"\"}},\"featureSet\":{\"features\":[{\"attributes\":{},\"geometry\":{\"x\":0,\"y\":0,\"type\":\"point\",\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100}}}]}}]}}],\"tables\":[],\"baseMap\":{\"baseMapLayers\":[{\"id\":\"VectorTile_1970\",\"opacity\":1,\"title\":\"Light Gray Base\",\"visibility\":true,\"layerType\":\"VectorTileLayer\",\"styleUrl\":\"https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json\"},{\"id\":\"VectorTile_7117\",\"opacity\":1,\"title\":\"Light Gray Reference\",\"visibility\":true,\"layerType\":\"VectorTileLayer\",\"styleUrl\":\"https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json\",\"isReference\":true}],\"title\":\"Light Gray Canvas\"},\"version\":\"2.26\",\"authoringApp\":\"ArcGIS for Power BI\",\"bookmarks\":[],\"initialState\":{\"viewpoint\":{\"targetGeometry\":{\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"xmin\":-291296.04292065854,\"ymin\":5429028.647673337,\"xmax\":1085793.4586647106,\"ymax\":6272893.439941458}}}}},\"webmapExtensions\":{\"format\":2}},\"embedCheckPassed\":true}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapTools": [
+        {
+          "properties": {
+            "basemaps": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "share": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "308ca67c336dee10431a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "caisses_regionales_39000"
+              }
+            },
+            "Property": "Latitude"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e3752ade7649ab941448",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "caisses_regionales_39000"
+              }
+            },
+            "Property": "Longitude"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e84779c75a43ef1fa979",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "caisses_regionales_39000"
+                  }
+                },
+                "Property": "Valeur"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+relationship 9ae847ce-9043-d790-ea52-062dcc20a4c4
+	fromColumn: general_ledger.account_id
+	toColumn: chart_of_accounts.account_id
+
+relationship 8cdf4474-d493-ab98-868d-d18217cdcc4a
+	fromColumn: general_ledger.cost_center_id
+	toColumn: cost_centers.cost_center_id
+
+relationship 276bc25a-3581-3e19-957b-38ea90a6d27d
+	fromColumn: budgets.account_id
+	toColumn: chart_of_accounts.account_id
+
+relationship dc6cc839-e1e0-a911-8f66-5e96b5677aac
+	fromColumn: forecasts.account_id
+	toColumn: chart_of_accounts.account_id
+
+relationship ff6318f1-7aeb-0b17-f04d-12b8091b65a6
+	fromColumn: forecasts.cost_center_id
+	toColumn: cost_centers.cost_center_id
+
+relationship a7679289-22a7-2381-b097-0b9800b1a1b0
+	fromColumn: allocations.to_cost_center_id
+	toColumn: cost_centers.cost_center_id
+
+relationship 3b7d7227-61b6-0747-ee53-62f387b2c2d5
+	fromColumn: invoices.customer_id
+	toColumn: customers.customer_id
+
+relationship b6d0fb3e-caf9-dfe4-b29a-c0e86bb67fbd
+	fromColumn: invoice_lines.invoice_id
+	toColumn: invoices.invoice_id
+
+relationship 0900153d-37ab-59c5-80c1-b4c9663e26f2
+	fromColumn: invoice_lines.cogs_eur
+	toColumn: products.cogs_eur
+
+relationship 2598a3b0-7c91-3be4-b0fd-4f0ef6cebb37
+	fromColumn: invoices.invoice_id
+	toColumn: payments.invoice_id
+
+relationship da7b03d8-846d-2516-7561-f71a96c35bf3
+	fromColumn: invoices.invoice_date
+	toColumn: dim_date.Date
+
+relationship a229daf9-0e2e-72e8-ec33-2a33333214e0
+	fromColumn: general_ledger.entry_date
+	toColumn: dim_date.Date
+

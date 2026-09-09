@@ -1,0 +1,126 @@
+table general_ledger
+	lineageTag: 3b25d999-0442-4067-ba46-6e6159c95b22
+	sourceLineageTag: [dbo].[general_ledger]
+
+	column entry_id
+		dataType: string
+		lineageTag: 966edefa-dbc6-46e2-a024-99985aeec44f
+		sourceLineageTag: entry_id
+		summarizeBy: none
+		sourceColumn: entry_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column entry_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b1758c73-d2b6-4341-a405-a15caa30f615
+		sourceLineageTag: entry_date
+		summarizeBy: none
+		sourceColumn: entry_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 040a51ef-8943-4092-a593-fc7663bb7f05
+		sourceLineageTag: period_month
+		summarizeBy: sum
+		sourceColumn: period_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: e1aed9ed-f612-4ad4-a8e9-352cca625591
+		sourceLineageTag: fiscal_year
+		summarizeBy: sum
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: 836cec18-4ef2-4eab-a9c7-58a272e23524
+		sourceLineageTag: account_id
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_center_id
+		dataType: string
+		lineageTag: 29d80e9f-7c26-4b0a-8ba0-caa854259c19
+		sourceLineageTag: cost_center_id
+		summarizeBy: none
+		sourceColumn: cost_center_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column debit_amount_eur
+		dataType: double
+		lineageTag: ea2e3599-668f-4649-84a1-90d526dccf5f
+		sourceLineageTag: debit_amount_eur
+		summarizeBy: sum
+		sourceColumn: debit_amount_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column credit_amount_eur
+		dataType: double
+		lineageTag: 02957ed4-696a-48da-b889-9daa46684053
+		sourceLineageTag: credit_amount_eur
+		summarizeBy: sum
+		sourceColumn: credit_amount_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column description
+		dataType: string
+		lineageTag: e5444a0e-e9b3-41bc-ad6f-2277a9a17bd2
+		sourceLineageTag: description
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference
+		dataType: string
+		lineageTag: 4f420034-a0f2-4271-8a2e-d99e4bdb0d57
+		sourceLineageTag: reference
+		summarizeBy: none
+		sourceColumn: reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column entry_type
+		dataType: string
+		lineageTag: dc31acd5-54fb-45fe-8f1a-0a9d0e4f9867
+		sourceLineageTag: entry_type
+		summarizeBy: none
+		sourceColumn: entry_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name_en
+		dataType: string
+		lineageTag: 9e8fd01b-be92-443e-b11b-ca67e0326aff
+		sourceLineageTag: month_name_en
+		summarizeBy: none
+		sourceColumn: month_name_en
+
+		annotation SummarizationSetBy = Automatic
+
+	partition general_ledger = entity
+		mode: directLake
+		source
+			entityName: general_ledger
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

@@ -1,0 +1,77 @@
+table cost_centers
+	lineageTag: 7a7257e3-6508-4d40-98b2-59de1f89fe24
+	sourceLineageTag: [dbo].[cost_centers]
+
+	column cost_center_id
+		dataType: string
+		lineageTag: dd3b7446-4e1c-4c56-8db7-b3d242d59438
+		sourceLineageTag: cost_center_id
+		summarizeBy: none
+		sourceColumn: cost_center_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_center_name
+		dataType: string
+		lineageTag: 34b2d938-9b07-4987-8b50-ed74e93372fe
+		sourceLineageTag: cost_center_name
+		summarizeBy: none
+		sourceColumn: cost_center_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_center_type
+		dataType: string
+		lineageTag: 8aee12da-ef60-434d-943b-dc7499dab646
+		sourceLineageTag: cost_center_type
+		summarizeBy: none
+		sourceColumn: cost_center_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 6d5e9584-62f3-47ff-8945-13d347738423
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column manager
+		dataType: string
+		lineageTag: 32357138-5074-4e9c-b8b2-f5f9caf5ccb1
+		sourceLineageTag: manager
+		summarizeBy: none
+		sourceColumn: manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_allocation_pct
+		dataType: double
+		lineageTag: 05caeb4d-b18a-4ce1-bc58-73dbab5de31f
+		sourceLineageTag: budget_allocation_pct
+		summarizeBy: sum
+		sourceColumn: budget_allocation_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5aa850ae-3665-43dc-8689-2e2d770f9389
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cost_centers = entity
+		mode: directLake
+		source
+			entityName: cost_centers
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

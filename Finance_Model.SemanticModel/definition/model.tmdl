@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - Finance_Lakehouse"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table chart_of_accounts
+ref table customers
+ref table cost_centers
+ref table budgets
+ref table invoices
+ref table allocations
+ref table general_ledger
+ref table forecasts
+ref table products
+ref table payments
+ref table invoice_lines
+ref table _Measures
+ref table dim_date
+

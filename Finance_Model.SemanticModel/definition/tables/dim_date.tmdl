@@ -1,0 +1,166 @@
+table dim_date
+	lineageTag: 960cdbdf-4b9b-414b-a2cb-49f18c6ca9e3
+	sourceLineageTag: [dbo].[dim_date]
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a521158c-66ba-4e57-aa3b-a728d82229d9
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: f3968c02-9be5-4786-8ef3-29283882502f
+		sourceLineageTag: Year
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: c10b3cbb-12b9-47ee-8157-b20af67332e3
+		sourceLineageTag: MonthNumber
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 1eb41926-6a29-4a58-a739-f15c3208d045
+		sourceLineageTag: Month
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: de1d082e-a761-423f-949e-72f85c707bbf
+		sourceLineageTag: MonthName
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: MonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 11f42370-1c21-4dba-b7c1-a8e1c66378ae
+		sourceLineageTag: Quarter
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: 6757a7b5-a7e1-40f6-9e48-8bab2a7155b1
+		sourceLineageTag: DayOfMonth
+		summarizeBy: sum
+		sourceColumn: DayOfMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: eebc0fbd-fad6-4240-ad83-1c01b92a4dc9
+		sourceLineageTag: DayName
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek_Sun1
+		dataType: int64
+		formatString: 0
+		lineageTag: f50104bc-b1c1-484e-a7d6-a02212b4224e
+		sourceLineageTag: DayOfWeek_Sun1
+		summarizeBy: sum
+		sourceColumn: DayOfWeek_Sun1
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek_Mon1
+		dataType: int64
+		formatString: 0
+		lineageTag: 5014726b-eb6e-4724-b080-5c98bd69d179
+		sourceLineageTag: DayOfWeek_Mon1
+		summarizeBy: sum
+		sourceColumn: DayOfWeek_Mon1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISOWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cc9b942-0c3e-4283-a787-1a7b9c3f3604
+		sourceLineageTag: ISOWeek
+		summarizeBy: sum
+		sourceColumn: ISOWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYear_JulToJun
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c647f75-60cb-476a-aab0-efe97462f7fb
+		sourceLineageTag: FiscalYear_JulToJun
+		summarizeBy: sum
+		sourceColumn: FiscalYear_JulToJun
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalMonth_JulToJun
+		dataType: int64
+		formatString: 0
+		lineageTag: ee577cab-e74a-4749-828c-2ee9c9ecaa3a
+		sourceLineageTag: FiscalMonth_JulToJun
+		summarizeBy: sum
+		sourceColumn: FiscalMonth_JulToJun
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: c12a4853-dfa4-4410-a88c-0ae8fc3ab64f
+
+		level Date
+			lineageTag: e5ad6eba-1633-43e2-82a9-8fb11a6264d4
+			column: Date
+
+		level Year
+			lineageTag: 1a1b7c39-d4f5-4718-b4e7-705de52094b6
+			column: Year
+
+		level Quarter
+			lineageTag: a6d1596b-0e25-44c8-ae70-358150edb102
+			column: Quarter
+
+		level MonthName
+			lineageTag: f960c089-d1dc-4eb4-8323-649d1b089c5b
+			column: MonthName
+
+	partition dim_date = entity
+		mode: directLake
+		source
+			entityName: dim_date
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

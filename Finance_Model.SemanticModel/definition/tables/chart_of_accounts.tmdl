@@ -1,0 +1,85 @@
+table chart_of_accounts
+	lineageTag: dd79a6c4-904b-43b5-90e9-6f990cccca9f
+	sourceLineageTag: [dbo].[chart_of_accounts]
+
+	column account_id
+		dataType: string
+		lineageTag: 965479fb-221b-484f-9412-a359ee5c2107
+		sourceLineageTag: account_id
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f3607ea-4d7a-449b-be17-b1ef55e5c865
+		sourceLineageTag: account_number
+		summarizeBy: sum
+		sourceColumn: account_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_name
+		dataType: string
+		lineageTag: 0e0d8fe7-9303-4a7e-9481-38b0ab1439f6
+		sourceLineageTag: account_name
+		summarizeBy: none
+		sourceColumn: account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_type
+		dataType: string
+		lineageTag: ef0771db-45cb-4e70-913d-ad40e4d2b0df
+		sourceLineageTag: account_type
+		summarizeBy: none
+		sourceColumn: account_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: deba71e9-8cd9-4b1d-a405-f6891b3421d5
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_category
+		dataType: string
+		lineageTag: 9354ce52-61fd-4db4-a985-327df440e7c0
+		sourceLineageTag: sub_category
+		summarizeBy: none
+		sourceColumn: sub_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9f5606b4-9a18-4f35-ab26-a16fcb2a032e
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 0dac867c-f835-44af-984c-27a5c4b7177a
+		sourceLineageTag: currency
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition chart_of_accounts = entity
+		mode: directLake
+		source
+			entityName: chart_of_accounts
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

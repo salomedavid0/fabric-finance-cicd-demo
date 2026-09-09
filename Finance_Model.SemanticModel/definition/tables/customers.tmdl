@@ -1,0 +1,105 @@
+table customers
+	lineageTag: 97003444-e587-4058-acda-8ecc4527ca89
+	sourceLineageTag: [dbo].[customers]
+
+	column customer_id
+		dataType: string
+		lineageTag: 5f4a3e3c-affe-478c-9c8f-06703e1ce01b
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: 26b95ad5-6435-4bc9-8bcb-f9824c7fa778
+		sourceLineageTag: company_name
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: 2f447d23-3c0e-4f05-9361-7e29a5581a07
+		sourceLineageTag: segment
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column industry
+		dataType: string
+		lineageTag: cac32e5b-740b-4f33-8cdb-cf923e90eb06
+		sourceLineageTag: industry
+		summarizeBy: none
+		sourceColumn: industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 1d1cd22b-2a57-47cd-b9fe-1d785ef6f8f3
+		sourceLineageTag: country
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_terms_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 46fbae89-ec5c-4f79-86ed-92b131273fa7
+		sourceLineageTag: payment_terms_days
+		summarizeBy: none
+		sourceColumn: payment_terms_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_limit_eur
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bdbb5de-b721-4a04-a058-42fb6be6759e
+		sourceLineageTag: credit_limit_eur
+		summarizeBy: none
+		sourceColumn: credit_limit_eur
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_manager
+		dataType: string
+		lineageTag: 53ca2e7f-79f5-4afa-afba-c30fe739ae6e
+		sourceLineageTag: account_manager
+		summarizeBy: none
+		sourceColumn: account_manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d145b141-4e75-47d2-8375-df12d6b34b29
+		sourceLineageTag: created_date
+		summarizeBy: none
+		sourceColumn: created_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c3469757-aeb4-440e-8b30-a126e9082bc1
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customers = entity
+		mode: directLake
+		source
+			entityName: customers
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

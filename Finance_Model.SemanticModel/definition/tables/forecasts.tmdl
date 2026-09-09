@@ -1,0 +1,107 @@
+table forecasts
+	lineageTag: d7c4f6ff-6214-410d-87ab-65c5a465ccac
+	sourceLineageTag: [dbo].[forecasts]
+
+	column forecast_id
+		dataType: string
+		lineageTag: b4bf36da-b3b4-4d30-bc2f-ece98e26fc39
+		sourceLineageTag: forecast_id
+		summarizeBy: none
+		sourceColumn: forecast_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 750332a8-5d00-4566-8736-08d6dad90ea8
+		sourceLineageTag: fiscal_year
+		summarizeBy: sum
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 35e08c1d-2454-4e1e-91ad-e1eb9d9b18ae
+		sourceLineageTag: period_month
+		summarizeBy: sum
+		sourceColumn: period_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a5a45f19-512e-4e29-ab97-5ba81b4e13eb
+		sourceLineageTag: period_date
+		summarizeBy: none
+		sourceColumn: period_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_center_id
+		dataType: string
+		lineageTag: 57247648-7f54-454c-841d-8387156de9a9
+		sourceLineageTag: cost_center_id
+		summarizeBy: none
+		sourceColumn: cost_center_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: 15ace708-b30f-4598-8226-e8a63faacbda
+		sourceLineageTag: account_id
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column forecast_amount_eur
+		dataType: double
+		lineageTag: 717a2888-33d4-4370-bcfb-212f613dd5df
+		sourceLineageTag: forecast_amount_eur
+		summarizeBy: sum
+		sourceColumn: forecast_amount_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column forecast_type
+		dataType: string
+		lineageTag: 43e92e3b-7665-436f-9810-3dd7272aa0f6
+		sourceLineageTag: forecast_type
+		summarizeBy: none
+		sourceColumn: forecast_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column version
+		dataType: string
+		lineageTag: 6fbfc23d-e23c-43aa-82cd-0e48324f7321
+		sourceLineageTag: version
+		summarizeBy: none
+		sourceColumn: version
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: de380139-3001-4307-a69e-bc1420215bcb
+		sourceLineageTag: created_date
+		summarizeBy: none
+		sourceColumn: created_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition forecasts = entity
+		mode: directLake
+		source
+			entityName: forecasts
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

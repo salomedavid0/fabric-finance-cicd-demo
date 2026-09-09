@@ -1,0 +1,92 @@
+table invoice_lines
+	lineageTag: 6a930e0b-c0fc-4e15-9b7f-07eee939e141
+	sourceLineageTag: [dbo].[invoice_lines]
+
+	column line_id
+		dataType: string
+		lineageTag: 7849e13f-c2ef-4f67-b05a-647a0568cf55
+		sourceLineageTag: line_id
+		summarizeBy: none
+		sourceColumn: line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_id
+		dataType: string
+		lineageTag: f6138cdd-79d7-41e9-a16c-58e84c7bd310
+		sourceLineageTag: invoice_id
+		summarizeBy: none
+		sourceColumn: invoice_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: e00fe056-bbe4-48c4-a41b-1355e3765407
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: ab9cbc03-5efa-4d62-ba4c-81c8b6aaea45
+		sourceLineageTag: quantity
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price_eur
+		dataType: double
+		lineageTag: 6484e6c6-0109-48e2-b2d4-cd1d55117d30
+		sourceLineageTag: unit_price_eur
+		summarizeBy: sum
+		sourceColumn: unit_price_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column discount_pct
+		dataType: double
+		lineageTag: 1e2a0c7f-da9a-49fb-ba34-747609526fce
+		sourceLineageTag: discount_pct
+		summarizeBy: sum
+		sourceColumn: discount_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column line_total_eur
+		dataType: double
+		lineageTag: 87d0cadb-c84c-4833-a7fd-64f2a5cd19ac
+		sourceLineageTag: line_total_eur
+		summarizeBy: sum
+		sourceColumn: line_total_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cogs_eur
+		dataType: double
+		lineageTag: e4becf8d-7817-4e32-9791-88db13b763dd
+		sourceLineageTag: cogs_eur
+		summarizeBy: none
+		sourceColumn: cogs_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition invoice_lines = entity
+		mode: directLake
+		source
+			entityName: invoice_lines
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+

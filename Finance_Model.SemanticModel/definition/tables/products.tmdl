@@ -1,0 +1,81 @@
+table products
+	lineageTag: 3b722dcd-e80b-44d6-a58b-70b50f1f6bbd
+	sourceLineageTag: [dbo].[products]
+
+	column product_id
+		dataType: string
+		lineageTag: fbc69ab9-4003-4131-ab36-d03beb49c482
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 0f4807d7-bb2c-4b49-bcae-975b09c0af30
+		sourceLineageTag: product_name
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 268f4bf3-edfd-4a23-a1b7-9d4505c88777
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price_eur
+		dataType: double
+		lineageTag: 9bc77350-3b91-4d66-ac24-e97e755e46f1
+		sourceLineageTag: unit_price_eur
+		summarizeBy: none
+		sourceColumn: unit_price_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cogs_eur
+		dataType: double
+		lineageTag: 289e8729-f224-4842-b5fa-989f66fd1aad
+		sourceLineageTag: cogs_eur
+		summarizeBy: none
+		sourceColumn: cogs_eur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gross_margin_pct
+		dataType: double
+		lineageTag: 3eeb14b7-c243-4319-b718-3a84400aa402
+		sourceLineageTag: gross_margin_pct
+		summarizeBy: none
+		sourceColumn: gross_margin_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: daf17f9d-01b2-4046-8703-e70d2dae3b0f
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	partition products = entity
+		mode: directLake
+		source
+			entityName: products
+			schemaName: dbo
+			expressionSource: 'DirectLake - Finance_Lakehouse'
+
