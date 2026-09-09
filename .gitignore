@@ -1,0 +1,29 @@
+# Power BI Desktop local state
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/unappliedChanges.json
+**/.pbi/editorSettings.json
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+*token*
+*credentials*
+
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+
+# Temporary and log files
+*.tmp
+*.temp
+*.log
+~$*
